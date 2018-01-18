@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Create new entity";
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p>
+            <strong>Oh snap! </strong> 
+            @ViewBag.Error
+        </p>
+    </div>
+}
+
+<h2>Create new entity</h2>
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        @Html.ActionLink("Entities", "Index", null, new { data_pjax = "" })
+    </li>
+    <li class="breadcrumb-item active">Create</li>
+</ol>
+
+@using (Html.BeginForm("Create", "Entity", null, FormMethod.Post, new { data_pjax = "" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <fieldset class="form-horizontal">
+        <div class="form-group row">
+            <div class="col-md-8">
+                <label for="xml-input">Just paste your XML code here</label>
+                <textarea class="form-control" id="xml-input" name="xml-input" rows="8">@if(ViewBag.Input != null){ @ViewBag.Input }</textarea>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-offset-2 col-md-8">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </div>
+    </fieldset>
+}

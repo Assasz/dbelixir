@@ -1,0 +1,25 @@
+﻿@model Dictionary<int, Dictionary<string, string>>
+
+@foreach (KeyValuePair<int, Dictionary<string, string>> item in Model)
+{
+    <tr id="item-@item.Key">
+        @foreach (KeyValuePair<string, string> el in item.Value)
+        {
+            <td>@el.Value</td>
+        }
+        <td>
+            <div class="btn-group float-right" role="group" aria-label="Options">
+                <div class="btn-group" role="group">
+                    <button id="btn-options-@item.Key" type="button" class="btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="fa fa-fw fa-ellipsis-v" aria-hidden="true"></span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btn-options-@item.Key" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;">
+                        @Html.ActionLink("Edit", "Edit", "EntityData", new { entityId = ViewBag.EntityId, itemId = item.Key }, new { @class = "dropdown-item", data_pjax = "" })
+                        <a href="#" class="dropdown-item" data-action="toggle-item-modal" data-item="@item.Key" data-entity="@ViewBag.EntityId">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+}
+

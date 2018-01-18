@@ -1,0 +1,38 @@
+﻿@model IEnumerable<XMLParser.Models.Entity>
+
+@foreach (var item in Model)
+{
+    <div id="entity-@item.Id" class="col col-md-4 col-sm-6">
+        <div class="card border-primary mb-3">
+            <div class="card-body text-primary">
+                <h4 class="card-title">
+                    @Html.ActionLink(item.Name.ToString(), "Details", "Entity", new { id = item.Id}, new { data_pjax = "" })
+                </h4>
+                <div class="btn-group float-right" role="group" aria-label="Options">
+                    <div class="btn-group" role="group">
+                        <button id="btn-options-@item.Id" type="button" class="btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="fa fa-fw fa-ellipsis-v" aria-hidden="true"></span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btn-options-@item.Id" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;">
+                            <a class="dropdown-item" href="#" data-action="toggle-entity-modal" data-entity="@item.Id" data-target="rename-entity-modal">Rename</a>
+                            <a class="dropdown-item" href="#" data-action="toggle-entity-modal" data-entity="@item.Id" data-target="delete-entity-modal">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                <p class="card-text">
+                    <small title="Last update">
+                        <span class="fa fa-fw fa-refresh" aria-hidden="true"></span>
+                        <span class="visually-hidden">Last update</span>
+                        <time datetime="@item.LastUpdateDate.ToString("o")">@Html.DisplayFor(modelItem => item.LastUpdateDate)</time>
+                    </small>
+
+                    <small title="Items">
+                        <span class="fa fa-fw fa-cube" aria-hidden="true"></span>
+                        <span class="visually-hidden">Items</span>
+                        <span>@Html.DisplayFor(modelItem => item.Items)</span>
+                    </small>
+                </p>
+            </div>
+        </div>
+    </div>
+}

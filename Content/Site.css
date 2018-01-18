@@ -1,0 +1,103 @@
+﻿
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.content-body {
+    padding-top: 80px;
+    min-height: 100vh;
+}
+
+h2 {
+    margin-bottom: 1em;
+    display: inline-block;
+}
+
+.visually-hidden { 
+  position: absolute; 
+  overflow: hidden; 
+  clip: rect(0 0 0 0); 
+  height: 1px; width: 1px; 
+  margin: -1px; padding: 0; border: 0; 
+}
+
+.btn-link {
+    padding: 0;
+    cursor: pointer;
+}
+
+.card-title {
+    display: inline-block;
+}
+
+.card-title a {
+    text-decoration: none;
+}
+
+.card-body small {
+    padding-left: 10px;
+}
+
+.card-body small:first-of-type {
+    padding-left: 0;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.alert p {
+    margin-bottom: 0;
+}
+
+.search-label {
+    position: absolute;
+    top: 6px;
+    left: 9px;
+}
+
+.search-input {
+    padding-left: 33px;
+}
+
+.form-group {
+    position: relative;
+}
+
+.navbar a, .navbar span{
+    color: #fff;
+    text-decoration: none;
+}
+
+.dropdown-item, th, label {
+    text-transform: capitalize;
+}
+
+#loader {
+    margin-left: 10px;
+    display: inline;
+}
+
+#loader img {
+    position: relative;
+    bottom: 2px;
+    width: 20px;
+    height: 20px;
+}
+
+@media only screen and (max-width : 768px) {
+    #search-item .search-input {
+        margin-top: 0.5rem;
+    }
+
+    #search-item .search-label {
+        top: 15px;
+    }
+
+    #search-item {
+        margin-right: 0 !important;
+    }
+}

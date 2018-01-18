@@ -1,0 +1,55 @@
+﻿@if (Request.Headers["X-PJAX"] != null)
+{
+    <title>@ViewBag.Title</title>
+    @RenderBody()
+    return;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - DbElixir</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="@Url.Action("Index", "Entity")" data-pjax>
+                    <span class="fa fa-fw fa-tint" aria-hidden="true"></span>
+                    DbElixir
+                </a>
+                <div id="loader" style="display: none;">
+                    <img src="~/Content/Images/rolling.gif" alt="Loader" />
+                </div>
+            </div>
+            <div class="float-right">
+                <a href="@Url.Action("Documentation", "Entity")" title="Documentation" data-pjax>
+                    <span class="fa fa-fw fa-info" aria-hidden="true"></span>
+                    <span class="visually-hidden">Learn more</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container content-body">
+        @RenderBody()
+    </div>
+    <hr />
+    <footer class="container">
+        <p>&copy; @DateTime.Now.Year - DbElixir</p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/7cb37386cf.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.js"></script>
+    <script src="~/Scripts/app.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

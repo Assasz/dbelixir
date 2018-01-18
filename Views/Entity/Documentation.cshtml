@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Documentation";
+}
+
+<h2>Documentation</h2>
+
+<h3>Creating new entities</h3>
+
+<p>
+    Only thing you need to do it is XML schema of entity you want to create. DbElixir will transform it for you.
+    Entity starts with <code>entity</code> tag and must has specified name and it's properties as subtree. Each property starts with <code>property</code> tag and must have it's own name, just like entity. 
+    There is also bunch of others attributes, that property can has specified. 
+</p>
+
+<h4>type</h4>
+<p>Defines data type of property. Available values are: string (default), int, long, double, decimal, bool and datetime.</p>
+
+<h4>nullable</h4>
+<p>Defines if property value can be empty, or not. Available values are true (default) and false.</p>
+
+<h4>length</h4>
+<p>Defines maximum length for string data type (type needs to be specified).</p>
+
+<h4>default</h4>
+<p>Defines default value of property, if it allows null. Needs to be in the same data type.</p>
+
+<h4>mapping</h4>
+<p>Defines property mapping to another property (also in another entity), just like relation. Needs to has specified entity and property name, that property is mapped to, e.g. Category[Id] (Id map entity in all as each entity has Id property).</p>
+
+<p>Short example of properly formatted entity schema in XML:</p>
+
+<pre class="line-numbers"><code class="language-markup">
+    &#x3C;?xml version=&#x22;1.0&#x22; encoding=&#x22;ISO-8859-1&#x22; ?&#x3E;
+
+    &#x3C;entity name=&#x22;Product&#x22;&#x3E;
+    &#x9;&#x3C;property name=&#x22;Name&#x22; type=&#x22;string&#x22; length=&#x22;255&#x22; nullable=&#x22;false&#x22;&#x3E;&#x3C;/property&#x3E;
+    &#x9;&#x3C;property name=&#x22;Quantity&#x22; type=&#x22;int&#x22; nullable=&#x22;false&#x22;&#x3E;&#x3C;/property&#x3E;
+    &#x9;&#x3C;property name=&#x22;Price&#x22; type=&#x22;decimal&#x22; nullable=&#x22;false&#x22;&#x3E;&#x3C;/property&#x3E;
+    &#x3C;/entity&#x3E;
+
+</code></pre>
+
+<div class="alert alert-info mt-4">
+    <p>Note that DbElixir will not create any tables in database for you, but it store their's schema in JSON and then parse it into readable data.</p>
+</div>
+
+<h3 class="mt-4">Adding new items</h3>
+
+<p>
+    DbElixir is designed for processing large volumes of XML data, therefore you can simply add to existing entity as many as you want items at once.
+    Just provide XML schema of item/s you want to create, starting with <code>entity name</code> tag for each item, enclosed in 
+    <code>entity name in plurar</code> tag (not necessary, if there is only one item). Each item needs to have specified properties according to entity schema (even if property allows null) using 
+    <code>property name</code> tag with valid value inside.
+</p>
+
+<p>Short example of properly formatted schema of one item in XML:</p>
+
+<pre class="line-numbers"><code class="language-markup">
+    &#x3C;?xml version=&#x22;1.0&#x22; encoding=&#x22;ISO-8859-1&#x22; ?&#x3E;
+
+    &#x3C;Product&#x3E;
+    &#x9;&#x3C;Name&#x3E;Gaming mouse&#x3C;/Name&#x3E;
+    &#x9;&#x3C;Quantity&#x3E;10&#x3C;/Quantity&#x3E;
+    &#x9;&#x3C;Price&#x3E;50.00&#x3C;/Price&#x3E;
+    &#x3C;/Product&#x3E;
+
+</code></pre>
+
